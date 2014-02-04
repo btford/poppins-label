@@ -1,0 +1,22 @@
+{
+  "name": "poppins-label",
+  "version": "0.0.1",
+  "description": "mary-poppins plugin for auto-labeling new issues and PRs on GitHub",
+  "main": "plugin.js",
+  "scripts": {
+    "test": "mocha tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/btford/poppins-label.git"
+  },
+  "keywords": [
+    "mary-poppins",
+    "poppins"
+  ],
+  "author": "Brian Ford",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/btford/poppins-label/issues"
+  }
+}
