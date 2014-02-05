@@ -15,7 +15,7 @@ module.exports = function (poppins) {
             this.log(e.stack);
             return false;
           }
-        });
+        }.bind(this));
 
     issue.labels = issue.labels.concat(applicableLabels);
 
