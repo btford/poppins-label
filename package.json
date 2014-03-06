@@ -1,6 +1,6 @@
 {
   "name": "poppins-label",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "mary-poppins plugin for auto-labeling new issues and PRs on GitHub",
   "main": "plugin.js",
   "scripts": {
