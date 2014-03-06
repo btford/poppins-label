@@ -25,8 +25,8 @@ module.exports = function (poppins) {
       number  : issue.number,
       labels  : issue.labels
     });
-  }.bind(this);
+  }.bind(poppins);
 
-  this.on('pullRequestCreated', updateLabels);
-  this.on('issueCreated', updateLabels);
+  poppins.on('pullRequestCreated', updateLabels);
+  poppins.on('issueCreated', updateLabels);
 };
