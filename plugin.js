@@ -1,32 +1,31 @@
-
 module.exports = function (poppins) {
   var plugins = poppins.plugins;
 
   plugins.labels = plugins.labels || {};
 
-  var updateLabels = function (issue) {
-    issue.labels = issue.labels || [];
+  var updateLabels = function (data) {
+
+    var labels = (data.issue || data.pull_request).labels || []
 
     var applicableLabels = Object.keys(plugins.labels).
         filter(function (labelName) {
           try {
-            return plugins.labels[labelName](issue);
+            return plugins.labels[labelName](data);
           } catch (e) {
-            this.log(e.stack);
+            poppins.log(e.stack);
             return false;
           }
-        }.bind(this));
+        });
 
-    issue.labels = issue.labels.concat(applicableLabels);
+    labels = labels.concat(applicableLabels);
+    poppins.rest.issues.edit({
+      user    : poppins.config.msg.user,
+      repo    : poppins.config.msg.repo,
+      number  : (data.issue || data.pull_request).number,
+      labels  : labels
+    }).catch(poppins.log.bind(poppins));
+  };
 
-    this.rest.issues.edit({
-      user    : this.config.msg.user,
-      repo    : this.config.msg.repo,
-      number  : issue.number,
-      labels  : issue.labels
-    });
-  }.bind(poppins);
-
-  poppins.on('pullRequestCreated', updateLabels);
-  poppins.on('issueCreated', updateLabels);
+  poppins.on('pullRequestOpened', updateLabels);
+  poppins.on('issueOpened', updateLabels);
 };
