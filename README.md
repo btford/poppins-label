@@ -23,7 +23,7 @@ module.exports = function (poppins) {
   poppins.couldYouPlease('label');
 
   // map tag name -> predicate fn
-  plugins.labels = {
+  poppins.plugins.labels = {
 
     // tag even numbered issues
     'even': function (issue) {
